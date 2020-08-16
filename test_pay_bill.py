@@ -1,11 +1,9 @@
-from selenium import webdriver
+from pages.drivers import Drivers
 from pages.online_banking_page import OnlineBankingPage
 from pages.base_tree import Root
 from pages.accounts_acttivity_table import Listings
 
-options = webdriver.ChromeOptions()
-options.add_argument('--start-maximized')
-browser = webdriver.Chrome(options=options)
+browser = Drivers('--start-maximized').chrome()
 obp = OnlineBankingPage(driver=browser)
 
 # test setup
@@ -15,6 +13,7 @@ check_mark = '✔'
 amount = '150.0'
 clearence_date = '2017-01-04'
 
+# test start
 # login
 obp.go()
 obp.username.input_text(user)
@@ -112,5 +111,5 @@ print(f'recipient name:                   {name}', check_mark)
 assert float(amount) == checking_amount_sent
 print(f'transfer amount sent:             {checking_amount_sent}')
 print()
-print('Test passed.')
 browser.quit()
+print('Test passed.')

@@ -1,13 +1,10 @@
-from selenium import webdriver
+from pages.drivers import Drivers
 from pages.online_banking_page import OnlineBankingPage
 from pages.accounts_acttivity_table import Listings
 from pages.base_tree import Root
 import time
 
-
-options = webdriver.ChromeOptions()
-options.add_argument('--start-maximized')
-browser = webdriver.Chrome(options=options)
+browser = Drivers('--start-maximized').chrome()
 obp = OnlineBankingPage(driver=browser)
 
 # test setup
@@ -15,6 +12,7 @@ user = 'Bruce Lee'
 pw = 'password'
 check_mark = '✔'
 
+# test start
 # login
 obp.go()
 obp.username.input_text(user)
@@ -94,7 +92,7 @@ difference_savings = savings_balance_after - savings_balance_before
 assert difference_savings == savings_amount_received
 print('savings account ok')
 browser.quit()
-
+print('test passed')
 
 
 

@@ -1,9 +1,7 @@
-from selenium import webdriver
+from pages.drivers import Drivers
 from pages.online_banking_page import OnlineBankingPage
-options = webdriver.ChromeOptions()
-options.add_argument('--start-maximized')
-browser = webdriver.Chrome(options=options)
 
+browser = Drivers('--start-maximized').chrome()
 obp = OnlineBankingPage(driver=browser)
 
 # test setup
@@ -13,10 +11,12 @@ name = 'George'
 sa1 = 'answer1'
 sa2 = 'answer2'
 
+# test start
 obp.go()
 obp.username.input_text(user)
 obp.password.input_text(pw)
 obp.login.click()
+print('test passed')
 
 
 
